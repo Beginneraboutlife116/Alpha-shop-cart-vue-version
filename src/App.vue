@@ -5,7 +5,6 @@
       <router-view/>
     </main>
     <footer class="footer">
-      <!-- logo -->
       <!-- footer content -->
     </footer>
   </div>

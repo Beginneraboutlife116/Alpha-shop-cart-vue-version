@@ -1,14 +1,19 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import MainPage from '../views/MainPage.vue'
+import Checkout from '../views/Checkout.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'main',
-    component: MainPage
+    name: 'root',
+    redirect: '/checkout'
+  },
+  {
+    path: '/checkout',
+    name: 'checkout',
+    component: Checkout
   }
 ]
 

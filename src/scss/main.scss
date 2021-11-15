@@ -1,3 +1,9 @@
+@import "./abstracts/breakpoints";
+@import "./abstracts/variables";
+@import "./abstracts/mixins";
+@import "./abstracts/placeholder";
+@import "./abstracts/utilities";
+
 @import "./base/reset";
-@import "./abstracts/abstracts.scss";
+
 @import "./themes/darkmode";

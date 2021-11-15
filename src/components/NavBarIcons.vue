@@ -20,6 +20,13 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'NavBarIcons'
+  // TODO: 有空之餘再來做黑夜切換模式
+}
+
+</script>
 <style lang="scss">
 @import '../scss/components/NavBarIcons.scss';
 </style>

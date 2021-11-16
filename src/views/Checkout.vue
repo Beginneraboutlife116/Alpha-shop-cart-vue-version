@@ -2,8 +2,10 @@
   <section>
     <h1 class="checkout-title">結帳</h1>
     <section class="checkout-content">
-      <Stepper />
-      <!-- form -->
+      <form class="form">
+        <Stepper />
+        <!-- form -->
+      </form>
       <!-- shoppingCart -->
       <!-- buttons -->
     </section>

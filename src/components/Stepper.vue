@@ -1,24 +1,42 @@
 <template>
   <div class="stepper">
     <span class="stepper__step-line line-active"></span>
-    <div class="stepper__step" v-for="(stepper, index) of steppers" :key="index">
-      <div class="stepper__step-circle">
-        <span class="stepper__step-circle--number"> {{index + 1}} </span>
+    <div class="stepper__step" v-for="stepper of steppers" :key="stepper.num">
+      <div class="stepper__step-circle finished" v-show="stepper.state === 'finished'">
+        <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5.99997 9.16994L1.82997 4.99994L0.409973 6.40994L5.99997 11.9999L16.5 1.49994L15.09 0.0899391L5.99997 9.16994Z" fill="white"/>
+        </svg>
       </div>
-      <div class="stepper__step-title"> {{stepper}} </div>
+      <div class="stepper__step-circle" :class="{active: stepper.state === 'active'}" v-show="stepper.state !== 'finished'">
+        <span class="stepper__step-circle--number"> {{stepper.num}} </span>
+      </div>
+      <div class="stepper__step-title" :class="{active: stepper.state === 'active'}"> {{stepper.title}} </div>
     </div>
-    <span class="stepper__step-line"></span>
+    <span class="stepper__step-line" :class="{'line-active': currentForm === 2}"></span>
   </div>
 </template>
 
 <script>
-const stepperData = ['寄送地址', '運送方式', '付款資訊']
+const stepperData = [{
+  num: 1,
+  title: '寄送地址',
+  state: 'active'
+}, {
+  num: 2,
+  title: '運送方式',
+  state: 'inactive'
+}, {
+  num: 3,
+  title: '付款資訊',
+  state: 'inactive'
+}]
 
 export default {
   name: 'Stepper',
   data () {
     return {
-      steppers: [...stepperData]
+      steppers: [...stepperData],
+      currentForm: 1
     }
   }
 }
@@ -32,9 +50,6 @@ export default {
   &__step {
     position: relative;
     @include flexArrange(false, center);
-    &:last-child::after {
-      display: none;
-    }
     &-circle {
       @include flexArrange(center, center);
       width: 2em;
@@ -73,38 +88,13 @@ export default {
   background-color: var(--step-active-and-finished);
 }
 
-.finished,
 .active {
-  .stepper__step-title {
-    color: var(--step-active-and-finished);
-  }
+  color: var(--basic-color);
+  border-color: var(--basic-color);
 }
 
 .finished {
-  .stepper__step-circle {
-    border: none;
-    background-color: $gray-7;
-    &::after {
-      content: "";
-      display: block;
-      width: 80%;
-      height: 80%;
-      // TODO: 處理引入svg的問題
-      // background: url("../../assets/images/icons/check-icon.svg") center/contain
-      //   no-repeat;
-    }
-    &--number {
-      display: none;
-    }
-  }
-}
-
-.active {
-  .stepper__step-circle {
-    border-color: var(--basic-color);
-    &--number {
-      color: var(--basic-color);
-    }
-  }
+  background-color: $gray-7;
+  border: none;
 }
 </style>

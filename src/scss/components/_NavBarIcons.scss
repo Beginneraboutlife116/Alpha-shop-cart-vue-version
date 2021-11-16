@@ -10,7 +10,7 @@
     height: 2.4rem;
     @include flexArrange(center, center);
     padding: 0;
-    border: 0;
+    border: none;
     background-color: transparent;
     cursor: pointer;
   }

@@ -1,14 +1,12 @@
 <template>
   <section>
     <h1 class="checkout-title">結帳</h1>
-    <section class="checkout-content">
-      <form class="form">
-        <Stepper />
-        <router-view></router-view>
-      </form>
+    <form class="form-content">
+      <Stepper />
+      <router-view class="forms"/>
       <!-- shoppingCart -->
       <!-- buttons -->
-    </section>
+    </form>
   </section>
 </template>
 
@@ -32,5 +30,9 @@ export default {
     font-size: 3.2rem;
     margin-block: 8rem 4.8rem;
   }
+}
+
+.forms {
+  grid-area: forms;
 }
 </style>

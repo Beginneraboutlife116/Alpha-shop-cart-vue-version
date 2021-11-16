@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Checkout from '@/views/Checkout.vue'
 import NotFound from '@/views/NotFound.vue'
+import FirstForm from '@/views/FirstForm.vue'
 
 Vue.use(VueRouter)
 
@@ -14,7 +15,24 @@ const routes = [
   {
     path: '/checkout',
     name: 'checkout',
-    component: Checkout
+    component: Checkout,
+    children: [
+      {
+        path: '',
+        name: 'first-form',
+        component: FirstForm
+      },
+      {
+        path: '2',
+        name: 'second-form',
+        component: () => import('@/views/SecondForm.vue')
+      },
+      {
+        path: '3',
+        name: 'third-form',
+        component: () => import('@/views/ThirdForm.vue')
+      }
+    ]
   },
   {
     path: '*',

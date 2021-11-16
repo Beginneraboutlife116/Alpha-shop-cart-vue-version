@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import NavBar from './NavBar.vue'
+import NavBar from '@/components/NavBar.vue'
 
 export default {
   name: 'Header',
@@ -33,5 +33,22 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../scss/layout/Header.scss';
+.header {
+  position: relative;
+  @include flexArrange(false, center);
+  height: 4em;
+  font-size: 1.4rem;
+  &__logo {
+    width: 10em;
+    height: 1.8em;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    object-fit: contain;
+  }
+  @include md {
+    font-size: 1.6rem;
+  }
+}
 </style>

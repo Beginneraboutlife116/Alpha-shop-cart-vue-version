@@ -28,5 +28,25 @@ export default {
 
 </script>
 <style lang="scss">
-@import '../scss/components/NavBarIcons.scss';
+.icons {
+  width: 15rem;
+  @include flexArrange(space-between);
+  margin: 2.4rem auto;
+  height: 2.4rem;
+  &__search,
+  &__shoppingCart,
+  &__darkMode {
+    width: 2.4rem;
+    height: 2.4rem;
+    @include flexArrange(center, center);
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  @include lg {
+    width: 13rem;
+    margin-inline: 0;
+  }
+}
 </style>

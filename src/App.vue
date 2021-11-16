@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Header from './components/Header.vue'
+import Header from '@/components/Header.vue'
 
 export default {
   name: 'App',
@@ -22,5 +22,10 @@ export default {
 </script>
 
 <style lang="scss">
-@import './scss/layout/App.scss';
+.main {
+  padding-inline: 1.5rem;
+  @include lg {
+    padding-inline: 12%;
+  }
+}
 </style>

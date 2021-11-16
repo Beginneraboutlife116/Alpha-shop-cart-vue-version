@@ -25,5 +25,86 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../scss/components/Stepper.scss';
+.stepper {
+  grid-area: stepper;
+  @include flexArrange(space-between, center);
+  font-size: 1.6rem;
+  &__step {
+    position: relative;
+    @include flexArrange(false, center);
+    &:last-child::after {
+      display: none;
+    }
+    &-circle {
+      @include flexArrange(center, center);
+      width: 2em;
+      height: 2em;
+      border-radius: 50%;
+      border: 1px solid var(--step-inactive-color);
+      color: var(--step-inactive-color);
+    }
+    &-title {
+      display: none;
+      @include breakpoint(33em) {
+        display: block;
+        margin-left: 0.8rem;
+        color: var(--step-inactive-color);
+      }
+    }
+    &-line {
+      display: block;
+      position: absolute;
+      left: 29%;
+      transform: translateX(-50%);
+      width: 15%;
+      height: 0.1rem;
+      background-color: var(--step-inactive-color);
+      &:last-child {
+        left: 71%;
+      }
+    }
+  }
+  @include md {
+    font-size: 1.2rem;
+  }
+}
+
+.line-active {
+  background-color: var(--step-active-and-finished);
+}
+
+.finished,
+.active {
+  .stepper__step-title {
+    color: var(--step-active-and-finished);
+  }
+}
+
+.finished {
+  .stepper__step-circle {
+    border: none;
+    background-color: $gray-7;
+    &::after {
+      content: "";
+      display: block;
+      width: 80%;
+      height: 80%;
+      // TODO: 處理引入svg的問題
+      // background: url("../../assets/images/icons/check-icon.svg") center/contain
+      //   no-repeat;
+    }
+    &--number {
+      display: none;
+    }
+  }
+}
+
+.active {
+  .stepper__step-circle {
+    border-color: var(--basic-color);
+    &--number {
+      color: var(--basic-color);
+    }
+  }
+}
 </style>

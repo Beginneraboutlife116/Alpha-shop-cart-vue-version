@@ -46,6 +46,7 @@ export default {
     top: 50%;
     left: 50%;
     object-fit: contain;
+    z-index: 99;
   }
   @include md {
     font-size: 1.6rem;

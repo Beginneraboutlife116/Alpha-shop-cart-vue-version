@@ -4,7 +4,7 @@
     <section class="checkout-content">
       <form class="form">
         <Stepper />
-        <!-- form -->
+        <router-view></router-view>
       </form>
       <!-- shoppingCart -->
       <!-- buttons -->

@@ -4,7 +4,7 @@
     <form class="form-content">
       <Stepper />
       <router-view class="forms"/>
-      <!-- shoppingCart -->
+      <ShoppingCart />
       <!-- buttons -->
     </form>
   </section>
@@ -12,11 +12,13 @@
 
 <script>
 import Stepper from '@/components/Stepper.vue'
+import ShoppingCart from '@/components/ShoppingCart.vue'
 
 export default {
   name: 'Checkout',
   components: {
-    Stepper
+    Stepper,
+    ShoppingCart
   }
 }
 </script>

@@ -10,7 +10,7 @@ const routes = [
   {
     path: '/',
     name: 'root',
-    redirect: '/checkout'
+    redirect: '/checkout/1'
   },
   {
     path: '/checkout',
@@ -18,7 +18,7 @@ const routes = [
     component: Checkout,
     children: [
       {
-        path: '',
+        path: '1',
         name: 'first-form',
         component: FirstForm
       },

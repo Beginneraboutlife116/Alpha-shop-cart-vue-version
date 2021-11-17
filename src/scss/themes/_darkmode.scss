@@ -13,10 +13,10 @@
   --input-placeholder: #999999;
   --input-select-icon: #{$basic-dark};
 
-  --second-form-radio-unchecked-bg-color: #{$white};
-  --second-form-unchecked-border-color: #{$gray-1};
-  --second-form-radio-checked-border-color: #{$basic-dark};
-  --second-form-time-description: #{$basic-dark};
+  --delivery-radio-unchecked-bg-color: #{$white};
+  --delivery-unchecked-border-color: #{$gray-1};
+  --delivery-radio-checked-border-color: #{$basic-dark};
+  --delivery-time-description: #{$basic-dark};
 
   --cart-border: #{$gray-1};
   --cart-bg: white;
@@ -44,10 +44,10 @@
   --input-placeholder: #ffffff4d;
   --input-select-icon: #{$gray-6};
 
-  --second-form-radio-unchecked-bg-color: #{$gray-7};
-  --second-form-unchecked-border-color: #{$gray-6};
-  --second-form-radio-checked-border-color: #{$white};
-  --second-form-time-description: rgba(255, 255, 255, 0.4);
+  --delivery-radio-unchecked-bg-color: #{$gray-7};
+  --delivery-unchecked-border-color: #{$gray-6};
+  --delivery-radio-checked-border-color: #{$white};
+  --delivery-time-description: rgba(255, 255, 255, 0.4);
 
   --cart-border: #ffffff33;
   --cart-bg: #383838;

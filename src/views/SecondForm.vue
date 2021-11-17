@@ -1,49 +1,45 @@
 <template>
-  <div class="form__part">
-    <p class="form__part-title">運送方式</p>
-    <div class="form__part-content form__second">
-      <label for="std" class="form__second-delivery std checked">
+  <div class="part">
+    <p class="part__title">運送方式</p>
+    <div class="part__content second">
+      <label for="std" class="delivery std checked">
         <input
           type="radio"
           id="std"
           name="delivery"
-          class="form__second-delivery--radio"
+          class="delivery--radio"
           checked
         />
-        <div class="form__second-delivery-info">
-          <p class="form__second-delivery-info-detail">
-            <span class="form__second-delivery-info-detail--way"
-              >標準運送</span
+        <div class="delivery__info">
+          <p class="delivery__info-detail">
+            <span>標準運送</span
             >
-            <span class="form__second-delivery-info-detail--fee"
-              >免費</span
+            <span>免費</span
             >
           </p>
-          <p class="form__second-delivery-info-detail">
-            <span class="form__second-delivery-info-detail--time"
+          <p class="delivery__info-detail">
+            <span class="delivery__info-detail--time"
               >約 3~7 個工作天</span
             >
           </p>
         </div>
       </label>
-      <label for="dhl" class="form__second-delivery dhl">
+      <label for="dhl" class="delivery dhl">
         <input
           type="radio"
           id="dhl"
           name="delivery"
-          class="form__second-delivery--radio"
+          class="delivery--radio"
         />
-        <div class="form__second-delivery-info">
-          <p class="form__second-delivery-info-detail">
-            <span class="form__second-delivery-info-detail--way"
-              >DHL貨運</span
+        <div class="delivery__info">
+          <p class="delivery__info-detail">
+            <span>DHL貨運</span
             >
-            <span class="form__second-delivery-info-detail--fee"
-              >$500</span
+            <span>$500</span
             >
           </p>
-          <p class="form__second-delivery-info-detail">
-            <span class="form__second-delivery-info-detail--time"
+          <p class="delivery__info-detail">
+            <span class="delivery__info-detail--time"
               >48小時內送達</span
             >
           </p>
@@ -52,3 +48,54 @@
     </div>
   </div>
 </template>
+
+<style lang="scss">
+.part__title {
+  margin-bottom: 2.4rem;
+  font-size: 2.4rem;
+  color: var(--basic-color);
+}
+
+.delivery {
+  height: 6rem;
+  @include flexArrange(start);
+  padding: 1rem 2rem;
+  border: 1px solid var(--delivery-unchecked-border-color);
+  border-radius: 0.4rem;
+  cursor: pointer;
+  &:first-child {
+    margin-bottom: 2.4rem;
+  }
+  &--radio {
+    appearance: none;
+    flex-basis: 2rem;
+    height: 2rem;
+    margin-right: 2rem;
+    border: 1px solid #333;
+    border-radius: 50%;
+    background-color: var(--delivery-radio-unchecked-bg-color);
+    &:checked {
+      background-color: white;
+      border-width: 0.6rem;
+    }
+  }
+  &__info {
+    flex: 1;
+    color: var(-basic-color);
+    &-detail {
+      @include flexArrange(space-between);
+      font-size: 1.4rem;
+      &--time {
+        font-size: 1.2rem;
+        color: var(--delivery-time-description);
+      }
+    }
+  }
+  @include md {
+    margin-bottom: 9.6rem;
+  }
+}
+.checked {
+  border-color: var(--delivery-radio-checked-border-color);
+}
+</style>

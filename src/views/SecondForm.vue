@@ -72,7 +72,7 @@ export default {
 
 .delivery {
   height: 6rem;
-  @include flexArrange(start);
+  @include flexArrange(flex-start);
   padding: 1rem 2rem;
   border: 1px solid var(--delivery-unchecked-border-color);
   border-radius: 0.4rem;

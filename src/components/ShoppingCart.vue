@@ -134,7 +134,7 @@ export default {
         grid-template-columns: max-content max-content;
         grid-template-rows: 1fr 2fr;
         grid-auto-flow: column;
-        align-items: start;
+        align-items: flex-start;
         margin-left: 2.1rem;
       }
     }

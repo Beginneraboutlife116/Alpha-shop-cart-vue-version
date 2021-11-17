@@ -45,10 +45,10 @@ export default {
 <style lang="scss">
 .stepper {
   grid-area: stepper;
+  position: relative;
   @include flexArrange(space-between, center);
   font-size: 1.6rem;
   &__step {
-    position: relative;
     @include flexArrange(false, center);
     &-circle {
       @include flexArrange(center, center);
@@ -67,7 +67,7 @@ export default {
       }
     }
     &-line {
-      display: block;
+      // display: block;
       position: absolute;
       left: 29%;
       transform: translateX(-50%);

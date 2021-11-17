@@ -5,7 +5,7 @@
       <Stepper />
       <router-view class="forms"/>
       <ShoppingCart />
-      <!-- buttons -->
+      <Buttons />
     </form>
   </section>
 </template>
@@ -13,12 +13,14 @@
 <script>
 import Stepper from '@/components/Stepper.vue'
 import ShoppingCart from '@/components/ShoppingCart.vue'
+import Buttons from '@/components/Buttons.vue'
 
 export default {
   name: 'Checkout',
   components: {
     Stepper,
-    ShoppingCart
+    ShoppingCart,
+    Buttons
   }
 }
 </script>
@@ -36,5 +38,28 @@ export default {
 
 .forms {
   grid-area: forms;
+}
+
+.form-content {
+  display: grid;
+  grid-template-rows: auto 2.4rem auto 3.2rem auto 3.2rem auto;
+  grid-template-areas:
+    "stepper"
+    "."
+    "forms"
+    "."
+    "cart"
+    "."
+    "buttons";
+  @include md {
+    grid-template-columns: 17fr 4fr 14fr;
+    grid-template-rows: auto 6.4rem auto 4.8rem auto;
+    grid-template-areas:
+      "stepper . cart"
+      ". . cart"
+      "forms . cart"
+      ". . cart"
+      "buttons . cart";
+  }
 }
 </style>

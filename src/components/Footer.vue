@@ -1,6 +1,6 @@
 <template>
-  <header class="header">
-    <div class="header__logo">
+  <footer class="footer">
+    <div class="footer__logo">
       <svg xmlns="http://www.w3.org/2000/svg" widht="170" hight="30" viewBox="0 0 170 30" fill="none" class="logo">
         <path class="word" d="M51.3531 18.6846H44.9348L43.6388 21.688H39.8331L46.6011 7.18514H49.6046L56.3931 21.688H52.6491L51.3531 18.6846ZM50.1394 15.8457L48.144 11.1966L46.1486 15.8457H50.1394Z"/>
         <path class="word" d="M57.2518 7.18514H61.037V18.6229H67.2084V21.688H57.2518V7.18514Z"/>
@@ -17,39 +17,122 @@
         <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0024 0.0130266C18.7639 0.0105251 22.3885 1.42411 25.1548 3.97249L22.3141 8.55661C21.2858 5.88226 19.1968 3.20468 15.1325 3.20468C6.8088 3.20468 0.63923 12.2916 0.63923 17.9884C0.637396 18.7252 0.731462 19.459 0.919069 20.1715C0.0866864 17.9044 -0.185961 15.4699 0.124289 13.0748C0.434539 10.6798 1.31852 8.39507 2.7011 6.41479C4.08368 4.43452 5.92399 2.81725 8.06563 1.70044C10.2073 0.583634 12.5869 0.00029138 15.0024 0V0.0130266Z" fill="#808080"/>
       </svg>
     </div>
-    <NavBar />
-  </header>
+    <div class="footer__section">
+      <h2 class="footer__section-title">客戶服務</h2>
+      <ul class="footer__section-lists">
+        <li class="footer__section-list">
+          <a href="#" class="footer__section-list--text">運送說明</a>
+        </li>
+        <li class="footer__section-list">
+          <a href="#" class="footer__section-list--text">退換貨相關</a>
+        </li>
+        <li class="footer__section-list">
+          <a href="#" class="footer__section-list--text">付款資訊</a>
+        </li>
+        <li class="footer__section-list">
+          <a href="#" class="footer__section-list--text">FAQ</a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer__section">
+      <h2 class="footer__section-title">關於我們</h2>
+      <ul class="footer__section-lists">
+        <li class="footer__section-list">
+          <a href="#" class="footer__section-list--text">品牌故事</a>
+        </li>
+        <li class="footer__section-list">
+          <a href="#" class="footer__section-list--text">媒體聯繫</a>
+        </li>
+        <li class="footer__section-list">
+          <a href="#" class="footer__section-list--text">Press kit</a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer__section">
+      <h2 class="footer__section-title">資訊</h2>
+      <ul class="footer__section-lists">
+        <li class="footer__section-list">
+          <a href="#" class="footer__section-list--text">隱私權政策</a>
+        </li>
+        <li class="footer__section-list">
+          <a href="#" class="footer__section-list--text">Cookie</a>
+        </li>
+        <li class="footer__section-list">
+          <a href="#" class="footer__section-list--text">GDPR</a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer__section">
+      <h2 class="footer__section-title">追蹤ALPHA Shop</h2>
+      <p class="footer__section-list--text">+886 02123-45678</p>
+      <div class="footer__section-socialMedia">
+        <div class="footer__section-socialMedia-FB"></div>
+        <div class="footer__section-socialMedia-IG"></div>
+        <div class="footer__section-socialMedia-WA"></div>
+      </div>
+    </div>
+  </footer>
 </template>
 
-<script>
-import NavBar from '@/components/NavBar.vue'
-
-export default {
-  name: 'Header',
-  components: {
-    NavBar
-  }
-}
-</script>
-
 <style lang="scss">
-.header {
-  position: relative;
-  @include flexArrange(false, center);
-  height: 4em;
-  font-size: 1.4rem;
+.footer {
+  display: none;
   &__logo {
     width: 10em;
     height: 1.8em;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    object-fit: contain;
-    z-index: 99;
+    background: var(--logo) center/contain no-repeat;
+    align-self: center;
   }
   @include md {
+    @include flexArrange(space-between);
+    padding: 6.4rem 1.5rem 8rem;
+    font-size: 1.4rem;
+    background-color: var(--footer-bg);
+    &__section {
+      &-title {
+        color: var(--basic-color);
+      }
+      &-lists {
+        padding: 0;
+        margin: 1.5em 0 0;
+      }
+      &-list--text {
+        margin-bottom: 0.5em;
+        text-decoration: none;
+        color: var(--footer-font-color);
+        &:hover {
+          color: $main-button-color;
+        }
+      }
+      &:last-child .footer__section-title {
+        margin-bottom: 1em;
+      }
+      &-socialMedia {
+        width: 10rem;
+        height: 2.4rem;
+        @include flexArrange(space-between);
+        &-FB,
+        &-IG,
+        &-WA {
+          width: 2.4rem;
+          height: 2.4rem;
+          cursor: pointer;
+        }
+        &-FB {
+          background: var(--facebook) center/contain no-repeat;
+        }
+        &-IG {
+          background: var(--instagram) center/contain no-repeat;
+        }
+        &-WA {
+          background: var(--whatsApp) center/contain no-repeat;
+        }
+      }
+    }
+  }
+  @include lg {
     font-size: 1.6rem;
+    padding-inline: 12%;
   }
 }
 

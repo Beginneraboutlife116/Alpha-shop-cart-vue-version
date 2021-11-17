@@ -75,8 +75,8 @@ export default {
 <style lang="scss">
 .cart {
   grid-area: cart;
-  min-height: 35.8em;
-  max-height: 49.2em;
+  min-height: 35.8rem;
+  max-height: 49.2rem;
   padding: 1.6rem;
   border: 1px solid var(--cart-border);
   border-radius: 0.8rem;

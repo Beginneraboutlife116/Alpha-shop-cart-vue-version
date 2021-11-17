@@ -32,14 +32,14 @@
 const dummyData = [
   {
     id: 1,
-    image: './pants-1.png',
+    image: '/pants-1.png',
     name: '破壞補丁修身牛仔褲',
     price: 3999,
     numbers: 1
   },
   {
     id: 2,
-    image: './pants-2.png',
+    image: '/pants-2.png',
     name: '刷色直筒牛仔褲',
     price: 1299,
     numbers: 1

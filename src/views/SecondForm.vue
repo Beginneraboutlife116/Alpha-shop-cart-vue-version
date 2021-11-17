@@ -2,13 +2,14 @@
   <div class="part">
     <p class="part__title">運送方式</p>
     <div class="part__content second">
-      <label for="std" class="delivery std checked">
+      <label for="std" class="delivery std" :class="{checked: deliveryWay === 'std'}">
         <input
           type="radio"
           id="std"
           name="delivery"
           class="delivery--radio"
-          checked
+          v-model="deliveryWay"
+          value="std"
         />
         <div class="delivery__info">
           <p class="delivery__info-detail">
@@ -24,12 +25,14 @@
           </p>
         </div>
       </label>
-      <label for="dhl" class="delivery dhl">
+      <label for="dhl" class="delivery dhl" :class="{checked: deliveryWay === 'dhl'}">
         <input
           type="radio"
           id="dhl"
           name="delivery"
           class="delivery--radio"
+          v-model="deliveryWay"
+          value="dhl"
         />
         <div class="delivery__info">
           <p class="delivery__info-detail">
@@ -48,6 +51,17 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'SecondForm',
+  data () {
+    return {
+      deliveryWay: 'std'
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 .part__title {

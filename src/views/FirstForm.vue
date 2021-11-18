@@ -2,15 +2,16 @@
   <div class="part">
     <p class="part__title">寄送地址</p>
     <div class="part__content first">
-      <div class="part__content-row gender">
-        <label for="gender" class="part__content-row--title"
+      <div class="part__content-row salutation">
+        <label for="salutation" class="part__content-row--title"
           >稱謂</label
         >
         <div class="part__content-row--selectWrapper">
           <select
-            name="gender"
-            id="gender"
+            name="salutation"
+            id="salutation"
             class="part__content-row--select"
+            v-model="firstFormData.salutation"
           >
             <option value="Mr.">先生</option>
             <option value="Ms.">小姐</option>
@@ -27,6 +28,7 @@
           id="name"
           name="name"
           placeholder="請輸入姓名"
+          v-model="firstFormData.name"
           required
         />
       </div>
@@ -40,6 +42,7 @@
           id="phone"
           name="phone"
           placeholder="請輸入行動電話"
+          v-model="firstFormData.phone"
           required
         />
       </div>
@@ -53,6 +56,7 @@
           id="email"
           name="email"
           placeholder="請輸入電子郵件"
+          v-model="firstFormData.email"
         />
       </div>
       <div class="part__content-row liveCity">
@@ -64,6 +68,7 @@
             name="liveCity"
             id="liveCity"
             class="part__content-row--select"
+            v-model="firstFormData.liveCity"
             required
           >
             <option value="" disabled selected>請選擇縣市</option>
@@ -98,16 +103,56 @@
           id="address"
           name="address"
           placeholder="請輸入地址"
+          v-model="firstFormData.address"
+          required
         />
       </div>
     </div>
   </div>
 </template>
 
+<script>
+export default {
+  name: 'FirstForm',
+  data () {
+    return {
+      firstFormData: {
+        salutation: 'Mr.',
+        name: '',
+        phone: '',
+        email: '',
+        liveCity: '',
+        address: ''
+      }
+    }
+  },
+  methods: {
+    selectSalutation () {
+      this.firstFormData.salutation = event.target.value
+    }
+  },
+  watch: {
+    firstFormData: {
+      handler () {
+        localStorage.setItem('first-form-data', JSON.stringify(this.firstFormData))
+      },
+      deep: true
+    }
+  },
+  created () {
+    this.firstFormData = { ...JSON.parse(localStorage.getItem('first-form-data')) }
+  },
+  destroyed () {
+    // TODO: 將資料在destroy的時候傳送出去！
+    console.log('destroyed')
+  }
+}
+</script>
+
 <style lang="scss">
 @import '@/scss/components/_Form.scss';
 
-$gridList: gender, name, phone, email, liveCity, address;
+$gridList: salutation, name, phone, email, liveCity, address;
 @each $val in $gridList {
   .#{$val} {
     grid-area: $val;
@@ -119,7 +164,7 @@ $gridList: gender, name, phone, email, liveCity, address;
   grid-template-columns: 4fr 3rem 5fr;
   grid-template-rows: repeat(5, 1fr);
   grid-template-areas:
-    "gender . name"
+    "salutation . name"
     "phone phone phone"
     "email email email"
     "liveCity liveCity liveCity"
@@ -129,7 +174,7 @@ $gridList: gender, name, phone, email, liveCity, address;
     grid-template-columns: 5fr 1fr 2fr 1fr 8fr;
     grid-template-rows: repeat(3, 1fr);
     grid-template-areas:
-      "gender . name name name"
+      "salutation . name name name"
       "phone phone phone . email"
       "liveCity . address address address";
   }

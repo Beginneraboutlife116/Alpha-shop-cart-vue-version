@@ -36,7 +36,6 @@
 <script>
 export default {
   name: 'NavBarIcons',
-  // TODO: 有空之餘再來做黑夜切換模式
   data () {
     return {
       darkMode: false

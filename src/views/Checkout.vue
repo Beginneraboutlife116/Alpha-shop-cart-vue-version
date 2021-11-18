@@ -5,7 +5,7 @@
       <Stepper />
       <router-view class="forms"/>
       <ShoppingCart />
-      <Buttons />
+      <Buttons @after-submit="handleAfterSubmit"/>
     </form>
   </section>
 </template>
@@ -21,6 +21,11 @@ export default {
     Stepper,
     ShoppingCart,
     Buttons
+  },
+  methods: {
+    handleAfterSubmit () {
+      console.log('I am in Checkout')
+    }
   }
 }
 </script>

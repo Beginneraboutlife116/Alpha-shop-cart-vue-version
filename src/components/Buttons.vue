@@ -8,7 +8,7 @@
       </div>
       <span class="btns__prev-text">上一步</span>
     </button>
-    <button class="btn btns__next" type="submit" @submit.prevent="submitCheckout" v-if="$store.state.currForm === 3">
+    <button class="btn btns__next" type="submit" v-if="$store.state.currForm === 3">
       <span class="btns__next-text">確認訂單</span>
     </button>
     <button class="btn btns__next" @click.stop.prevent="toNextForm" v-else>
@@ -32,10 +32,8 @@ export default {
     toPrevForm () {
       this.$store.commit('toPrevForm')
     },
-    submitCheckout () {
-      console.log('I am from buttons')
-      this.$emit('after-submit')
-      // TODO: 將最後一頁資料傳輸出去，並且觸發modal顯示、console.log
+    submitAction () {
+      console.log('in buttons')
     }
   }
 }

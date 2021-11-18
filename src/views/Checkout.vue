@@ -1,11 +1,11 @@
 <template>
   <section>
     <h1 class="checkout-title">結帳</h1>
-    <form class="form-content">
+    <form class="form-content" @submit.prevent="handleSubmit">
       <Stepper />
       <router-view class="forms"/>
       <ShoppingCart />
-      <Buttons @after-submit="handleAfterSubmit"/>
+      <Buttons />
     </form>
   </section>
 </template>
@@ -23,7 +23,7 @@ export default {
     Buttons
   },
   methods: {
-    handleAfterSubmit () {
+    handleSubmit () {
       console.log('I am in Checkout')
     }
   }

@@ -14,6 +14,7 @@
           placeholder="John Doe"
           required
           v-model="thirdFormData.holder"
+          autofocus
         />
       </div>
       <div class="part__content-row cardNum">
@@ -93,6 +94,9 @@ export default {
       date,
       validId
     }
+  },
+  updated () {
+    // TODO: 將資料傳出去
   }
 }
 </script>

@@ -30,6 +30,7 @@
           placeholder="請輸入姓名"
           v-model="firstFormData.name"
           required
+          autofocus
         />
       </div>
       <div class="part__content-row phone">

@@ -61,6 +61,17 @@ export default {
         deliveryWay: 'std'
       }
     }
+  },
+  watch: {
+    secondFormData: {
+      handler () {
+        localStorage.setItem('second-form-data', JSON.stringify(this.secondFormData))
+      },
+      deep: true
+    }
+  },
+  created () {
+    console.log(JSON.parse(localStorage.getItem('second-form-data')))
   }
 }
 </script>

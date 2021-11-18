@@ -12,12 +12,12 @@
         </svg>
       </div>
     </router-link>
-    <button class="icons__darkMode" id="dark-mode" v-if="!darkMode" @click.stop.prevent="toggleDarkMode">
+    <button class="icons__darkMode" id="dark-mode" v-if="!darkMode" @click.stop.prevent="toggleDarkModeBoolean">
       <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
         <path d="M9.5 1.5C5.75 1.5 1.25 5.25 1.25 11.25C1.25 17.25 5.75 21.75 11.75 21.75C17.75 21.75 21.5 17.25 21.5 13.5C13.25 18.75 4.25 9.75 9.5 1.5Z" stroke="#2A2A2A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
-    <button class="icons__darkMode" id="dark-mode" v-else @click.stop.prevent="toggleDarkMode">
+    <button class="icons__darkMode" id="dark-mode" v-else @click.stop.prevent="toggleDarkModeBoolean">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M11.9999 4.20669C12.1767 4.20669 12.3463 4.13645 12.4713 4.01143C12.5963 3.8864 12.6666 3.71683 12.6666 3.54002V1.27336C12.6666 1.09655 12.5963 0.926976 12.4713 0.801952C12.3463 0.676927 12.1767 0.606689 11.9999 0.606689C11.8231 0.606689 11.6535 0.676927 11.5285 0.801952C11.4035 0.926976 11.3333 1.09655 11.3333 1.27336V3.54002C11.3333 3.71683 11.4035 3.8864 11.5285 4.01143C11.6535 4.13645 11.8231 4.20669 11.9999 4.20669Z" fill="white" fill-opacity="0.8"/>
         <path d="M11.9999 19.7933C11.8231 19.7933 11.6535 19.8636 11.5285 19.9886C11.4035 20.1136 11.3333 20.2832 11.3333 20.46V22.7267C11.3333 22.9035 11.4035 23.073 11.5285 23.1981C11.6535 23.3231 11.8231 23.3933 11.9999 23.3933C12.1767 23.3933 12.3463 23.3231 12.4713 23.1981C12.5963 23.073 12.6666 22.9035 12.6666 22.7267V20.46C12.6666 20.2832 12.5963 20.1136 12.4713 19.9886C12.3463 19.8636 12.1767 19.7933 11.9999 19.7933Z" fill="white" fill-opacity="0.8"/>
@@ -42,19 +42,28 @@ export default {
     }
   },
   methods: {
-    toggleDarkMode () {
+    toggleDarkModeBoolean () {
       this.darkMode = !this.darkMode
-      document.body.classList.toggle('darkMode')
+      this.toggleDarkMode()
+    },
+    toggleDarkMode () {
+      this.darkMode ? document.body.classList.add('darkMode') : document.body.classList.remove('darkMode')
     }
   },
   watch: {
     darkMode () {
-      localStorage.setItem('dark-mode', this.darkMode)
+      localStorage.setItem('dark-mode', this.darkMode.toString())
     }
   },
   created () {
-    this.darkMode = Boolean(localStorage.getItem('dark-mode'))
-    this.darkMode ? document.body.classList.add('darkMode') : document.body.classList.remove('darkMode')
+    let isDarkMode
+    if (localStorage.getItem('dark-mode') === 'true') {
+      isDarkMode = true
+    } else {
+      isDarkMode = false
+    }
+    this.darkMode = isDarkMode
+    this.toggleDarkMode()
   }
 }
 

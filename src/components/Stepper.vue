@@ -2,17 +2,15 @@
   <div class="stepper">
     <span class="stepper__step-line line-active"></span>
     <div class="stepper__step" v-for="stepper of steppers" :key="stepper.num">
-      <div class="stepper__step-circle finished" v-show="stepper.state === 'finished'">
-        <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <div class="stepper__step-circle" :class="{active: stepper.state === 'active', finished: stepper.state === 'finished'}">
+        <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg" v-if="stepper.state === 'finished'">
           <path d="M5.99997 9.16994L1.82997 4.99994L0.409973 6.40994L5.99997 11.9999L16.5 1.49994L15.09 0.0899391L5.99997 9.16994Z" fill="white"/>
         </svg>
+        <span class="stepper__step-circle--number" v-else> {{stepper.num}} </span>
       </div>
-      <div class="stepper__step-circle" :class="{active: stepper.state === 'active'}" v-show="stepper.state !== 'finished'">
-        <span class="stepper__step-circle--number"> {{stepper.num}} </span>
-      </div>
-      <div class="stepper__step-title" :class="{active: stepper.state === 'active'}"> {{stepper.title}} </div>
+      <div class="stepper__step-title" :class="{active: stepper.state !== 'inactive'}"> {{stepper.title}} </div>
     </div>
-    <span class="stepper__step-line" :class="{'line-active': currentForm === 2}"></span>
+    <span class="stepper__step-line" :class="{'line-active': $store.state.currForm !== 1}"></span>
   </div>
 </template>
 
@@ -35,9 +33,22 @@ export default {
   name: 'Stepper',
   data () {
     return {
-      steppers: [...stepperData],
-      currentForm: 1
+      steppers: [...stepperData]
     }
+  },
+  methods: {
+    styleStepper () {
+      if (this.$store.state.currForm > this.$store.state.prevForm) {
+        this.steppers.find(stepper => stepper.num === this.$store.state.prevForm).state = 'finished'
+        this.steppers.find(stepper => stepper.num === this.$store.state.currForm).state = 'active'
+      } else {
+        this.steppers.find(stepper => stepper.num === this.$store.state.prevForm).state = 'inactive'
+        this.steppers.find(stepper => stepper.num === this.$store.state.currForm).state = 'active'
+      }
+    }
+  },
+  updated () {
+    this.styleStepper()
   }
 }
 </script>

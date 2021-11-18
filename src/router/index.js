@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Checkout from '@/views/Checkout.vue'
 import NotFound from '@/views/NotFound.vue'
-import FirstForm from '@/views/FirstForm.vue'
+import MainPage from '@/views/MainPage.vue'
 
 Vue.use(VueRouter)
 
@@ -10,17 +10,28 @@ const routes = [
   {
     path: '/',
     name: 'root',
-    redirect: '/checkout/1'
+    component: MainPage
   },
   {
-    path: '/checkout',
-    name: 'checkout',
+    path: '/signin',
+    name: 'sign-in',
+    component: () => import('@/views/SignIn.vue')
+  },
+  {
+    path: '/signup',
+    name: 'sign-up',
+    component: () => import('@/views/SignUp.vue')
+  },
+  {
+    path: '/users/:id/checkout',
+    name: 'user-checkout',
     component: Checkout,
+    redirect: '/users/:id/checkout/1',
     children: [
       {
         path: '1',
         name: 'first-form',
-        component: FirstForm
+        component: () => import('@/views/FirstForm.vue')
       },
       {
         path: '2',

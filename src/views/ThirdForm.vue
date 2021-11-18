@@ -14,7 +14,7 @@
           placeholder="John Doe"
           required
           v-model="thirdFormData.holder"
-          autofocus
+          ref="holder"
         />
       </div>
       <div class="part__content-row cardNum">
@@ -78,6 +78,11 @@ export default {
       }
     }
   },
+  methods: {
+    focusInput () {
+      this.$refs.holder.focus()
+    }
+  },
   watch: {
     thirdFormData: {
       handler () {
@@ -95,8 +100,8 @@ export default {
       validId
     }
   },
-  updated () {
-    // TODO: 將資料傳出去
+  mounted () {
+    this.focusInput()
   }
 }
 </script>

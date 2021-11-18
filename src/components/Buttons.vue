@@ -26,6 +26,7 @@ export default {
     submitCheckout () {
       console.log('I am from buttons')
       this.$emit('after-submit')
+      // TODO: 將最後一頁資料傳輸出去，並且觸發modal顯示、console.log
     }
   }
 }

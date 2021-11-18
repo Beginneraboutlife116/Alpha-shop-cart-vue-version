@@ -30,7 +30,7 @@
           placeholder="請輸入姓名"
           v-model="firstFormData.name"
           required
-          autofocus
+          ref="name"
         />
       </div>
       <div class="part__content-row phone">
@@ -120,6 +120,11 @@ export default {
       firstFormData: {}
     }
   },
+  methods: {
+    focusInput () {
+      this.$refs.name.focus()
+    }
+  },
   watch: {
     firstFormData: {
       handler () {
@@ -138,7 +143,9 @@ export default {
       liveCity: liveCity || '',
       address
     }
-    console.log(this.firstFormData)
+  },
+  mounted () {
+    this.focusInput()
   },
   destroyed () {
     // TODO: 將資料在destroy的時候傳送出去！

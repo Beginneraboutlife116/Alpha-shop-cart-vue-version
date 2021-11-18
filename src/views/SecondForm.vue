@@ -57,9 +57,7 @@ export default {
   name: 'SecondForm',
   data () {
     return {
-      secondFormData: {
-        deliveryWay: 'std'
-      }
+      secondFormData: {}
     }
   },
   watch: {
@@ -71,7 +69,10 @@ export default {
     }
   },
   created () {
-    console.log(JSON.parse(localStorage.getItem('second-form-data')))
+    const { deliveryWay } = JSON.parse(localStorage.getItem('second-form-data')) || {}
+    this.secondFormData = {
+      deliveryWay: deliveryWay || 'std'
+    }
   }
 }
 </script>

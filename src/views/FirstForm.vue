@@ -116,14 +116,7 @@ export default {
   name: 'FirstForm',
   data () {
     return {
-      firstFormData: {
-        salutation: 'Mr.',
-        name: '',
-        phone: '',
-        email: '',
-        liveCity: '',
-        address: ''
-      }
+      firstFormData: {}
     }
   },
   watch: {
@@ -135,7 +128,16 @@ export default {
     }
   },
   created () {
-    this.firstFormData = { ...JSON.parse(localStorage.getItem('first-form-data')) }
+    const { salutation, name, phone, email, liveCity, address } = JSON.parse(localStorage.getItem('first-form-data')) || {}
+    this.firstFormData = {
+      salutation: salutation || 'Mr.',
+      name,
+      phone,
+      email,
+      liveCity: liveCity || '',
+      address
+    }
+    console.log(this.firstFormData)
   },
   destroyed () {
     // TODO: 將資料在destroy的時候傳送出去！

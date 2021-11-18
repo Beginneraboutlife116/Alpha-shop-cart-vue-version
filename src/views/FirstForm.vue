@@ -126,11 +126,6 @@ export default {
       }
     }
   },
-  methods: {
-    selectSalutation () {
-      this.firstFormData.salutation = event.target.value
-    }
-  },
   watch: {
     firstFormData: {
       handler () {

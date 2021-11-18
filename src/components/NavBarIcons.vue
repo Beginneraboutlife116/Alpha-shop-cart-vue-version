@@ -44,7 +44,7 @@ export default {
   methods: {
     toggleDarkMode () {
       this.darkMode = !this.darkMode
-      this.darkMode ? document.body.classList.add('darkMode') : document.body.classList.remove('darkMode')
+      document.body.classList.toggle('darkMode')
     }
   },
   watch: {
@@ -54,6 +54,7 @@ export default {
   },
   created () {
     this.darkMode = Boolean(localStorage.getItem('dark-mode'))
+    this.darkMode ? document.body.classList.add('darkMode') : document.body.classList.remove('darkMode')
   }
 }
 

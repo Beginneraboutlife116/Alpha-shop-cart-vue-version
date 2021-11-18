@@ -1,6 +1,6 @@
 <template>
   <div class="btns">
-    <button class="btn btns__prev" :class="{disabled: false}" @click.stop.prevent>
+    <button class="btn btns__prev" :class="{disabled: $store.state.currForm === 1}" @click.stop.prevent="toPrevForm">
       <div class="btns__prev-icon">
         <svg width="21" height="9" viewBox="0 0 21 9" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M5.85981 0.116733C5.6729 -0.0389109 5.36985 -0.0389109 5.18293 0.116733L0.140187 4.31579L0.0840028 4.37195C-0.0467075 4.53002 -0.0245865 4.74876 0.148335 4.88605L5.19108 8.88989L5.25866 8.93468C5.44823 9.03856 5.70562 9.01808 5.86777 8.87648L5.92156 8.8202C6.04631 8.66236 6.02172 8.44802 5.85166 8.31301L1.67891 5H20.0238L20.1094 4.99194C20.3315 4.94961 20.5 4.74546 20.5 4.5C20.5 4.22386 20.2868 4 20.0238 4H1.87229L5.85981 0.680368L5.91519 0.625171C6.04442 0.469841 6.02596 0.255083 5.85981 0.116733Z" fill="black"/>
@@ -8,7 +8,10 @@
       </div>
       <span class="btns__prev-text">上一步</span>
     </button>
-    <button class="btn btns__next" :type="{submit: true}" @submit.stop.prevent="submitCheckout">
+    <button class="btn btns__next" type="submit" @submit.prevent="submitCheckout" v-if="$store.state.currForm === 3">
+      <span class="btns__next-text">確認訂單</span>
+    </button>
+    <button class="btn btns__next" @click.stop.prevent="toNextForm" v-else>
       <span class="btns__next-text">下一步</span>
       <div class="btns__next-icon">
         <svg width="21" height="9" viewBox="0 0 21 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -23,6 +26,12 @@
 export default {
   name: 'Buttons',
   methods: {
+    toNextForm () {
+      this.$store.commit('toNextForm')
+    },
+    toPrevForm () {
+      this.$store.commit('toPrevForm')
+    },
     submitCheckout () {
       console.log('I am from buttons')
       this.$emit('after-submit')
@@ -42,9 +51,11 @@ export default {
   &__prev,
   &__next {
     width: 15rem;
-    display: flex;
+    @include flexArrange(center);
     cursor: pointer;
     border: none;
+    padding: 1rem 3rem;
+    border-radius: 0.8rem;
     @include sm {
       width: 17rem;
     }
@@ -62,11 +73,8 @@ export default {
     }
   }
   &__next {
-    padding: 1rem 3rem;
-    border-radius: 0.8rem;
     background-color: $main-button-color;
     color: white;
-    @include flexArrange(center);
     &-text {
       margin-right: 1.2rem;
     }
@@ -75,10 +83,9 @@ export default {
     display: none;
     + .btns__next {
       width: 100%;
-      @include flexArrange(center);
     }
     @include md {
-      display: block;
+      display: flex;
       visibility: hidden;
       + .btns__next {
         width: 17rem;

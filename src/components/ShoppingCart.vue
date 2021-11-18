@@ -50,6 +50,7 @@ export default {
   data () {
     return {
       items: []
+      // TODO: 傳入shipping的資料
     }
   },
   methods: {
@@ -90,6 +91,7 @@ export default {
   },
   computed: {
     total () {
+      // TODO: 還沒有加入shipping的值
       let total = 0
       this.items.forEach(item => {
         total += parseInt(item.numbers) * parseInt(item.price)

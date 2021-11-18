@@ -10,9 +10,9 @@
       <div class="cart__item-content">
         <p class="cart__item-content-name"> {{item.name}} </p>
         <div class="cart__item-content-amout">
-          <input type="button" value="-" class="cart__item-content-amout--btn minus">
-          <input type="number" step="1" max="99" value="1" name="quantity" class="cart__item-content-amout--number" v-model.trim="item.numbers">
-          <input type="button" value="+" class="cart__item-content-amout--btn plus">
+          <input type="button" value="-" class="cart__item-content-amout--btn minus" @click="reduceAmout(item.id)">
+          <input type="number" step="1" max="99" name="quantity" class="cart__item-content-amout--number" v-model="item.numbers">
+          <input type="button" value="+" class="cart__item-content-amout--btn plus" @click="increaseAmout(item.id)">
         </div>
         <p class="cart__item-content-price"> {{item.price.toLocaleString()}} </p>
       </div>
@@ -55,6 +55,34 @@ export default {
   methods: {
     fetchItems () {
       this.items = [...dummyData]
+    },
+    reduceAmout (id) {
+      this.items = this.items.map(item => {
+        if (item.id === id) {
+          return {
+            ...item,
+            numbers: !item.numbers ? 0 : (item.numbers - 1)
+          }
+        } else {
+          return {
+            ...item
+          }
+        }
+      })
+    },
+    increaseAmout (id) {
+      this.items = this.items.map(item => {
+        if (item.id === id) {
+          return {
+            ...item,
+            numbers: item.numbers + 1
+          }
+        } else {
+          return {
+            ...item
+          }
+        }
+      })
     }
   },
   created () {

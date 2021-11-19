@@ -2,7 +2,7 @@
   <nav class="nav">
     <label class="toggleBox" for="toggleBox">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
-        <path d="M0 6.25H15V8.75H0V6.25ZM0 0H20V2.5H0V0ZM0 15H9.04375V12.5H0V15Z" fill="#2A2A2A"/>
+        <path d="M0 6.25H15V8.75H0V6.25ZM0 0H20V2.5H0V0ZM0 15H9.04375V12.5H0V15Z"/>
       </svg>
     </label>
     <input type="checkbox" id="toggleBox">
@@ -51,6 +51,9 @@ export default {
 .toggleBox {
   @include flexArrange(false, center);
   cursor: pointer;
+  & svg {
+    fill: var(--basic-color);
+  }
   @include lg {
     display: none;
   }

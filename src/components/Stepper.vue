@@ -53,7 +53,7 @@ export default {
         } else if (stepper.num === this.initialCurrentForm) {
           return {
             ...stepper,
-            state: 'actvie'
+            state: 'active'
           }
         } else {
           return {

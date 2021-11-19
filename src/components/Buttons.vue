@@ -59,7 +59,6 @@ export default {
   },
   created () {
     this.getCurrForm()
-    this.$emit('update-form', this.currentForm)
   }
 }
 </script>

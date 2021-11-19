@@ -5,12 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    currForm: 1
   },
   mutations: {
-    updateCurrentForm (state, payload) {
-      state.currForm = payload
-    }
   },
   actions: {
   },

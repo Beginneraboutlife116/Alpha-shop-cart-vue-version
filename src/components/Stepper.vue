@@ -10,7 +10,7 @@
       </div>
       <div class="stepper__step-title" :class="{active: stepper.state !== 'inactive'}"> {{stepper.title}} </div>
     </div>
-    <span class="stepper__step-line" :class="{'line-active': initialCurrentForm !== 1}"></span>
+    <span class="stepper__step-line" :class="{'line-active': currentForm !== 1}"></span>
   </div>
 </template>
 
@@ -32,9 +32,9 @@ const stepperData = [{
 export default {
   name: 'Stepper',
   props: {
-    initialCurrentForm: {
+    currentForm: {
       type: Number,
-      required: true
+      default: 1
     }
   },
   data () {
@@ -45,12 +45,12 @@ export default {
   methods: {
     styleStepper () {
       this.steppers = this.steppers.map(stepper => {
-        if (stepper.num < this.initialCurrentForm) {
+        if (stepper.num < this.currentForm) {
           return {
             ...stepper,
             state: 'finished'
           }
-        } else if (stepper.num === this.initialCurrentForm) {
+        } else if (stepper.num === this.currentForm) {
           return {
             ...stepper,
             state: 'active'
@@ -65,7 +65,7 @@ export default {
     }
   },
   watch: {
-    initialCurrentForm () {
+    currentForm () {
       this.styleStepper()
     }
   }

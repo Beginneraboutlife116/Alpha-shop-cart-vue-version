@@ -25,6 +25,12 @@
 <script>
 export default {
   name: 'Buttons',
+  props: {
+    initialCurrentForm: {
+      type: Number,
+      default: 1
+    }
+  },
   data () {
     return {
       currentForm: 1
@@ -50,15 +56,17 @@ export default {
         path: `/users/1/checkout/${this.currentForm}`
       })
     },
-    getCurrForm () {
-      const fullPath = this.$route.fullPath
-      const num = parseInt(fullPath[fullPath.length - 1])
-      this.currentForm = num
-      this.$emit('update-form', this.currentForm)
+    fetchCurrentForm () {
+      this.currentForm = this.initialCurrentForm
+    }
+  },
+  watch: {
+    initialCurrentForm () {
+      this.fetchCurrentForm()
     }
   },
   created () {
-    this.getCurrForm()
+    this.fetchCurrentForm()
   }
 }
 </script>

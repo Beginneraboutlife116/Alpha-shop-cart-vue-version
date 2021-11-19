@@ -2,10 +2,10 @@
   <section>
     <h1 class="checkout-title">結帳</h1>
     <form class="form-content" @submit.prevent="handleSubmit">
-      <Stepper :initial-current-form="currentForm"/>
+      <Stepper :current-form="currentForm"/>
       <router-view class="forms"/>
-      <ShoppingCart />
-      <Buttons @update-form="updateCurrentForm"/>
+      <ShoppingCart :initial-items="items"/>
+      <Buttons :initial-current-form="currentForm" @update-form="updateCurrentForm"/>
     </form>
   </section>
 </template>
@@ -14,6 +14,23 @@
 import Stepper from '@/components/Stepper.vue'
 import ShoppingCart from '@/components/ShoppingCart.vue'
 import Buttons from '@/components/Buttons.vue'
+
+const dummyItemsData = [
+  {
+    id: 1,
+    image: '/pants-1.png',
+    name: '破壞補丁修身牛仔褲',
+    price: 3999,
+    numbers: 1
+  },
+  {
+    id: 2,
+    image: '/pants-2.png',
+    name: '刷色直筒牛仔褲',
+    price: 1299,
+    numbers: 1
+  }
+]
 
 export default {
   name: 'Checkout',
@@ -24,16 +41,32 @@ export default {
   },
   data () {
     return {
-      currentForm: 1
+      currentForm: 1,
+      items: []
     }
   },
   methods: {
+    fetchItems () {
+      this.items = [...dummyItemsData]
+    },
     updateCurrentForm (num) {
       this.currentForm = num
     },
     handleSubmit () {
       console.log('I am in Checkout')
+    },
+    getCurrForm () {
+      const fullPath = this.$route.fullPath
+      const num = parseInt(fullPath[fullPath.length - 1])
+      this.currentForm = num
     }
+  },
+  created () {
+    this.fetchItems()
+    this.getCurrForm()
+  },
+  updated () {
+    this.getCurrForm()
   }
 }
 </script>

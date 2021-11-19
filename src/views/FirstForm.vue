@@ -123,6 +123,17 @@ export default {
   methods: {
     focusInput () {
       this.$refs.name.focus()
+    },
+    reloadPage () {
+      const { salutation, name, phone, email, liveCity, address } = JSON.parse(localStorage.getItem('first-form-data')) || {}
+      this.firstFormData = {
+        salutation: salutation || 'Mr.',
+        name,
+        phone,
+        email,
+        liveCity: liveCity || '',
+        address
+      }
     }
   },
   watch: {
@@ -134,22 +145,13 @@ export default {
     }
   },
   created () {
-    const { salutation, name, phone, email, liveCity, address } = JSON.parse(localStorage.getItem('first-form-data')) || {}
-    this.firstFormData = {
-      salutation: salutation || 'Mr.',
-      name,
-      phone,
-      email,
-      liveCity: liveCity || '',
-      address
-    }
+    this.reloadPage()
   },
   mounted () {
     this.focusInput()
   },
   destroyed () {
-    // TODO: 將資料在destroy的時候傳送出去！
-    console.log('destroyed')
+    this.$emit('update-to-form', this.firstFormData)
   }
 }
 </script>

@@ -19,7 +19,7 @@
     </div>
     <div class="cart__deliveryFee">
       <span class="cart__deliveryFee--fee">運費</span>
-      <span class="cart__deliveryFee--price">免費</span>
+      <span class="cart__deliveryFee--price"> {{ shippingFee === 'dhl' ? 500 : '免費' }} </span>
     </div>
     <div class="cart__price">
       <span class="cart__price--total">小計</span>
@@ -35,17 +35,23 @@ export default {
     initialItems: {
       type: Array,
       required: true
+    },
+    initialShippingFee: {
+      type: String
     }
   },
   data () {
     return {
-      items: []
-      // TODO: 傳入shipping的資料
+      items: [],
+      shippingFee: ''
     }
   },
   methods: {
-    fetchItems () {
+    fetchData () {
       this.items = [...this.initialItems]
+    },
+    fetchShippingFee () {
+      this.shippingFee = this.initialShippingFee
     },
     reduceAmout (id) {
       this.items = this.items.map(item => {
@@ -77,16 +83,27 @@ export default {
     }
   },
   created () {
-    this.fetchItems()
+    this.fetchData()
+    this.fetchShippingFee()
   },
   computed: {
     total () {
-      // TODO: 還沒有加入shipping的值
       let total = 0
       this.items.forEach(item => {
         total += parseInt(item.numbers) * parseInt(item.price)
       })
+      if (this.shippingFee === 'dhl') {
+        total += 500
+      }
       return `$ ${total.toLocaleString()}`
+    }
+  },
+  watch: {
+    total () {
+      this.$emit('update-total', this.total)
+    },
+    initialShippingFee () {
+      this.fetchShippingFee()
     }
   }
 }

@@ -64,6 +64,7 @@ export default {
     secondFormData: {
       handler () {
         localStorage.setItem('second-form-data', JSON.stringify(this.secondFormData))
+        this.$emit('update-shipping-fee', this.secondFormData.deliveryWay)
       },
       deep: true
     }
@@ -73,9 +74,6 @@ export default {
     this.secondFormData = {
       deliveryWay: deliveryWay || 'std'
     }
-  },
-  destroyed () {
-    // TODO: 將資料傳出去
   }
 }
 </script>

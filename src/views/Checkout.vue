@@ -3,8 +3,8 @@
     <h1 class="checkout-title">結帳</h1>
     <form class="form-content" @submit.prevent="handleSubmit">
       <Stepper :current-form="currentForm"/>
-      <router-view class="forms"/>
-      <ShoppingCart :initial-items="items"/>
+      <router-view class="forms" @update-to-form="updateFromFirst" @update-shipping-fee="updateShippingFee"/>
+      <ShoppingCart :initial-items="items" :initial-shipping-fee="formResult.shippingFee"   @update-total="updateTotal"/>
       <Buttons :initial-current-form="currentForm" @update-form="updateCurrentForm"/>
     </form>
   </section>
@@ -41,8 +41,21 @@ export default {
   },
   data () {
     return {
-      currentForm: 1,
-      items: []
+      items: [],
+      formResult: {
+        salutation: 'Mr.',
+        username: '',
+        phone: '',
+        email: '',
+        city: '',
+        addr: '',
+        shippingFee: 'std',
+        ccname: '',
+        cardnumber: '',
+        expdate: '',
+        cvv: '',
+        totalPrice: ''
+      }
     }
   },
   methods: {
@@ -53,20 +66,73 @@ export default {
       this.currentForm = num
     },
     handleSubmit () {
-      console.log('I am in Checkout')
+      const form = event.target
+      const formData = new FormData(form)
+      const thirdFormData = [...formData.values()]
+      this.formResult = {
+        ...this.formResult,
+        ccname: thirdFormData[0],
+        cardnumber: thirdFormData[1],
+        expdate: thirdFormData[2],
+        cvv: thirdFormData[3]
+      }
+      this.showResult()
     },
-    getCurrForm () {
-      const fullPath = this.$route.fullPath
-      const num = parseInt(fullPath[fullPath.length - 1])
-      this.currentForm = num
+    updateFromFirst (payload) {
+      const { address, email, liveCity, name, phone, salutation } = payload
+      this.formResult = {
+        ...this.formResult,
+        salutation,
+        username: name || '',
+        phone: phone || '',
+        email: email || '',
+        city: liveCity || '',
+        addr: address || ''
+      }
+    },
+    updateShippingFee (payload) {
+      this.formResult.shippingFee = payload
+    },
+    updateTotal (payload) {
+      this.formResult.totalPrice = payload
+    },
+    showResult () {
+      let result = '{\n\n\t'
+      for (const key in this.formResult) {
+        result += `${key}: ${this.formResult[key]}\n\t`
+      }
+      result += '\n}'
+      console.log(result)
+    }
+  },
+  computed: {
+    currentForm: {
+      get () {
+        const fullPath = this.$route.fullPath
+        const num = parseInt(fullPath[fullPath.length - 1])
+        return num
+      },
+      set (fullPath) {
+        fullPath = this.$route.fullPath
+        const num = parseInt(fullPath[fullPath.length - 1])
+        return num
+      }
     }
   },
   created () {
     this.fetchItems()
-    this.getCurrForm()
-  },
-  updated () {
-    this.getCurrForm()
+    const { salutation, name, phone, email, liveCity, address } = JSON.parse(localStorage.getItem('first-form-data')) || {}
+    const { deliveryWay } = JSON.parse(localStorage.getItem('second-form-data')) || {}
+    this.formResult = {
+      ...this.formResult,
+      salutation,
+      username: name || '',
+      phone: phone || '',
+      email: email || '',
+      city: liveCity || '',
+      addr: address || '',
+      shippingFee: deliveryWay || 'std'
+    }
   }
 }
 </script>

@@ -68,6 +68,9 @@ export default {
     currentForm () {
       this.styleStepper()
     }
+  },
+  created () {
+    this.styleStepper()
   }
 }
 </script>

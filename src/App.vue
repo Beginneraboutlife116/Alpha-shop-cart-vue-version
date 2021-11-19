@@ -65,6 +65,8 @@ export default {
     border-radius: 1rem;
     background-color: #fff;
     box-shadow: 0 0 5px 2px $main-button-color;
+    background-color: var(--body-bg);
+    color: var(--basic-color);
   }
 }
 

@@ -2,10 +2,10 @@
   <section>
     <h1 class="checkout-title">結帳</h1>
     <form class="form-content" @submit.prevent="handleSubmit">
-      <Stepper />
+      <Stepper :initial-current-form="currentForm"/>
       <router-view class="forms"/>
       <ShoppingCart />
-      <Buttons />
+      <Buttons @update-form="updateCurrentForm"/>
     </form>
   </section>
 </template>
@@ -22,7 +22,15 @@ export default {
     ShoppingCart,
     Buttons
   },
+  data () {
+    return {
+      currentForm: 1
+    }
+  },
   methods: {
+    updateCurrentForm (num) {
+      this.currentForm = num
+    },
     handleSubmit () {
       console.log('I am in Checkout')
     }

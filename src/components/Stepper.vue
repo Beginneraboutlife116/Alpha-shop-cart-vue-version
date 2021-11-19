@@ -10,7 +10,7 @@
       </div>
       <div class="stepper__step-title" :class="{active: stepper.state !== 'inactive'}"> {{stepper.title}} </div>
     </div>
-    <span class="stepper__step-line" :class="{'line-active': $store.state.currForm !== 1}"></span>
+    <span class="stepper__step-line" :class="{'line-active': initialCurrentForm !== 1}"></span>
   </div>
 </template>
 
@@ -31,6 +31,12 @@ const stepperData = [{
 
 export default {
   name: 'Stepper',
+  props: {
+    initialCurrentForm: {
+      type: Number,
+      required: true
+    }
+  },
   data () {
     return {
       steppers: [...stepperData]
@@ -38,17 +44,30 @@ export default {
   },
   methods: {
     styleStepper () {
-      if (this.$store.state.currForm > this.$store.state.prevForm) {
-        this.steppers.find(stepper => stepper.num === this.$store.state.prevForm).state = 'finished'
-        this.steppers.find(stepper => stepper.num === this.$store.state.currForm).state = 'active'
-      } else {
-        this.steppers.find(stepper => stepper.num === this.$store.state.prevForm).state = 'inactive'
-        this.steppers.find(stepper => stepper.num === this.$store.state.currForm).state = 'active'
-      }
+      this.steppers = this.steppers.map(stepper => {
+        if (stepper.num < this.initialCurrentForm) {
+          return {
+            ...stepper,
+            state: 'finished'
+          }
+        } else if (stepper.num === this.initialCurrentForm) {
+          return {
+            ...stepper,
+            state: 'actvie'
+          }
+        } else {
+          return {
+            ...stepper,
+            state: 'inactive'
+          }
+        }
+      })
     }
   },
-  updated () {
-    this.styleStepper()
+  watch: {
+    initialCurrentForm () {
+      this.styleStepper()
+    }
   }
 }
 </script>

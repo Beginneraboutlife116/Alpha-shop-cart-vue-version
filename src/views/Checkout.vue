@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="checkout">
     <h1 class="checkout-title">結帳</h1>
     <form class="form-content" @submit.prevent="handleSubmit">
       <Stepper :current-form="currentForm"/>
@@ -76,7 +76,8 @@ export default {
         expdate: thirdFormData[2],
         cvv: thirdFormData[3]
       }
-      this.showResult()
+      console.log(this.checkoutResult)
+      this.$emit('show-result', [this.checkoutResult, false])
     },
     updateFromFirst (payload) {
       const { address, email, liveCity, name, phone, salutation } = payload
@@ -95,14 +96,6 @@ export default {
     },
     updateTotal (payload) {
       this.formResult.totalPrice = payload
-    },
-    showResult () {
-      let result = '{\n\n\t'
-      for (const key in this.formResult) {
-        result += `${key}: ${this.formResult[key]}\n\t`
-      }
-      result += '\n}'
-      console.log(result)
     }
   },
   computed: {
@@ -117,6 +110,14 @@ export default {
         const num = parseInt(fullPath[fullPath.length - 1])
         return num
       }
+    },
+    checkoutResult () {
+      let result = '{\n\n\t'
+      for (const key in this.formResult) {
+        result += `${key}: ${this.formResult[key]}\n\t`
+      }
+      result += '\n}'
+      return result
     }
   },
   created () {

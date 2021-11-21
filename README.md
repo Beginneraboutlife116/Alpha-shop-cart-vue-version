@@ -7,6 +7,17 @@ Don't worry, just click the shopping cart icon on the right top corner.
 It'll bring you to checkout page.
 
 ## Project setup
+### Git Clone
+```
+git clone https://github.com/Beginneraboutlife116/Alpha-shop-cart-vue-version.git
+```
+
+### cd Dir
+```
+cd Alpha-shop-cart-vue-version
+```
+
+### Setup
 ```
 npm install
 ```

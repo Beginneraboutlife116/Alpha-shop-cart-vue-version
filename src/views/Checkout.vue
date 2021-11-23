@@ -76,8 +76,10 @@ export default {
         expdate: thirdFormData[2],
         cvv: thirdFormData[3]
       }
-      console.log(this.checkoutResult)
-      this.$emit('show-result', [this.checkoutResult, false])
+      for (const key in this.formResult) {
+        console.log(`${key}: ${this.formResult[key]}`)
+      }
+      this.$emit('show-result', [this.formResult, false])
     },
     updateFromFirst (payload) {
       const { address, email, liveCity, name, phone, salutation } = payload
@@ -110,14 +112,6 @@ export default {
         const num = parseInt(fullPath[fullPath.length - 1])
         return num
       }
-    },
-    checkoutResult () {
-      let result = '{\n\n\t'
-      for (const key in this.formResult) {
-        result += `${key}: ${this.formResult[key]}\n\t`
-      }
-      result += '\n}'
-      return result
     }
   },
   created () {

@@ -8,3 +8,12 @@
     符號，前往結帳頁面
   </h1>
 </template>
+
+<style lang="scss">
+h1 {
+  margin-top: 8rem;
+  text-align: center;
+  color: var(--basic-color);
+  height: 100vh;
+}
+</style>

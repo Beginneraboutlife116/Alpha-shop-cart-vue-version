@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Checkout from '@/views/Checkout.vue'
 import NotFound from '@/views/NotFound.vue'
-import MainPage from '@/views/MainPage.vue'
+// import MainPage from '@/views/MainPage.vue'
 
 Vue.use(VueRouter)
 
@@ -10,7 +10,8 @@ const routes = [
   {
     path: '/',
     name: 'root',
-    component: MainPage
+    redirect: '/users/:id/checkout/1'
+    // component: MainPage
   },
   {
     path: '/signin',

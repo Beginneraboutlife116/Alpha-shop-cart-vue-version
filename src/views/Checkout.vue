@@ -5,7 +5,7 @@
       <Stepper :current-form="currentForm"/>
       <router-view class="forms" @update-to-form="updateFromFirst" @update-shipping-fee="updateShippingFee"/>
       <ShoppingCart :initial-items="items" :initial-shipping-fee="formResult.shippingFee"   @update-total="updateTotal"/>
-      <Buttons :initial-current-form="currentForm" @update-form="updateCurrentForm"/>
+      <Buttons :initial-current-form="currentForm" :form-result="formResult" @update-form="updateCurrentForm"/>
     </form>
   </section>
 </template>

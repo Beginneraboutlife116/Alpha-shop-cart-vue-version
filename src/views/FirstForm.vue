@@ -140,6 +140,7 @@ export default {
     firstFormData: {
       handler () {
         localStorage.setItem('first-form-data', JSON.stringify(this.firstFormData))
+        this.$emit('update-to-form', this.firstFormData)
       },
       deep: true
     }
@@ -149,10 +150,10 @@ export default {
   },
   mounted () {
     this.focusInput()
-  },
-  destroyed () {
-    this.$emit('update-to-form', this.firstFormData)
   }
+  // destroyed () {
+  //   this.$emit('update-to-form', this.firstFormData)
+  // }
 }
 </script>
 

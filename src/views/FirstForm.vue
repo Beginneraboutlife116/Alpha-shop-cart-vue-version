@@ -28,7 +28,7 @@
           id="name"
           name="name"
           placeholder="請輸入姓名"
-          v-model="firstFormData.name"
+          v-model.trim="firstFormData.name"
           required
           ref="name"
         />
@@ -43,7 +43,7 @@
           id="phone"
           name="phone"
           placeholder="請輸入行動電話"
-          v-model="firstFormData.phone"
+          v-model.trim="firstFormData.phone"
           required
         />
       </div>
@@ -57,7 +57,7 @@
           id="email"
           name="email"
           placeholder="請輸入電子郵件"
-          v-model="firstFormData.email"
+          v-model.trim="firstFormData.email"
         />
       </div>
       <div class="part__content-row liveCity">
@@ -104,7 +104,7 @@
           id="address"
           name="address"
           placeholder="請輸入地址"
-          v-model="firstFormData.address"
+          v-model.trim="firstFormData.address"
           required
         />
       </div>

@@ -13,7 +13,7 @@
           class="part__content-row--text"
           placeholder="John Doe"
           required
-          v-model="thirdFormData.holder"
+          v-model.trim="thirdFormData.holder"
           ref="holder"
         />
       </div>
@@ -28,7 +28,7 @@
           class="part__content-row--text"
           placeholder="1111 2222 3333 4444"
           required
-          v-model="thirdFormData.cardNum"
+          v-model.trim="thirdFormData.cardNum"
         />
       </div>
       <div class="part__content-row expiredDate">

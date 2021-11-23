@@ -10,7 +10,7 @@ const routes = [
   {
     path: '/',
     name: 'root',
-    redirect: '/users/:id/checkout/1'
+    redirect: '/users/1/checkout/1'
     // component: MainPage
   },
   {

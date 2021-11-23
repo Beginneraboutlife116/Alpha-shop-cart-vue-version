@@ -11,7 +11,7 @@
     <button class="btn btns__next" type="submit" v-if="currentForm === 3">
       <span class="btns__next-text">確認訂單</span>
     </button>
-    <button class="btn btns__next" @click.stop.prevent="toNextForm" v-else>
+    <button class="btn btns__next" type="submit" @click.stop.prevent="toNextForm" v-else>
       <span class="btns__next-text">下一步</span>
       <div class="btns__next-icon">
         <svg width="21" height="9" viewBox="0 0 21 9" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -48,7 +48,12 @@ export default {
   },
   methods: {
     fetchData () {
-      this.items = [...this.initialItems]
+      const shoppingCartContent = JSON.parse(localStorage.getItem('shopping-cart-content'))
+      if (shoppingCartContent) {
+        this.items = [...shoppingCartContent]
+      } else {
+        this.items = [...this.initialItems]
+      }
     },
     fetchShippingFee () {
       this.shippingFee = this.initialShippingFee
@@ -104,6 +109,12 @@ export default {
     },
     initialShippingFee () {
       this.fetchShippingFee()
+    },
+    items: {
+      handler () {
+        localStorage.setItem('shopping-cart-content', JSON.stringify(this.items))
+      },
+      deep: true
     }
   }
 }

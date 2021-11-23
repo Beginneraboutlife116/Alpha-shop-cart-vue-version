@@ -151,9 +151,6 @@ export default {
   mounted () {
     this.focusInput()
   }
-  // destroyed () {
-  //   this.$emit('update-to-form', this.firstFormData)
-  // }
 }
 </script>
 
